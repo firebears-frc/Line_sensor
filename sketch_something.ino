@@ -7,17 +7,13 @@ int sensorValue = 0;             // Photoreceptor pixel exposure min value is se
 int lightExposure = 2;           // Sets the LED pin, pin 2 on arduino.
 int lightLeft = 3;               // Sets the left-light pinNumber.
 int lightRight = 4;              // Sets the right-light pinNumber.
-
-
 //-----------------------------------------------------------------------------------
 void setup() {
-
   pinMode(lightLeft, OUTPUT);    // Sets the output of the PIN.
   pinMode(lightRight, OUTPUT);   // Sets the output of the PIN.
   pinMode(lightExposure, OUTPUT);// Sets the output of the PIN.
   pinMode(CLK, OUTPUT);          // Sets the output of the PIN.
   pinMode(SI, OUTPUT);           // Sets the output of the PIN.
-
   Serial.begin(9600);            // Starts.
   digitalWrite(SI, HIGH);
   digitalWrite(CLK, HIGH);
@@ -26,17 +22,14 @@ void setup() {
   digitalWrite(lightExposure, HIGH);
 
   for (i = 0; i < 128; i ++) {
-
     digitalWrite(CLK, HIGH);
     digitalWrite(CLK, LOW);
-
   }
 }
 
 
-//-----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 void loop() {
-
   sensorValue = analogRead(A1);
   digitalWrite(SI, HIGH);
   digitalWrite(CLK, HIGH);
@@ -44,55 +37,68 @@ void loop() {
   digitalWrite(CLK, LOW);
 
   for (i = 0; i < 128; i ++) {
-    delayMicroseconds(sensorValue);
-    PixelArray[i] = analogRead(A0);
-    digitalWrite(CLK, HIGH);
-    digitalWrite(CLK, LOW);
+    delayMicroseconds(sensorValue); PixelArray[i] = analogRead(A0); digitalWrite(CLK, HIGH); digitalWrite(CLK, LOW);
   }
 
   int Left[59] = {0, 59};
   int Right[128] = {69, 128};
   int Middle[69] = {59, 69};
-  int D = 132;
-
-  if (Left[59] = PixelArray[i] ) {
-    for (int L = 0; L < 59; L++ ) {
-      Left[L] +  Left[L] / 2;
-      Left[L] = analogRead(A2);
+  float D = 100.6;
+  //-----------------------------------------------------------------------------------
+  if (Left[59] = analogRead(A0)) {
+    for (int L = 0; L < 59; L++) {
+      delayMicroseconds(sensorValue);
+      PixelArray[L] = analogRead(A2);
+      //digitalWrite(CLK, HIGH);
+      //digitalWrite(CLK, LOW);
+    }
+    if (analogRead(A2) > D ) {
+      Serial.print(analogRead(A2));
+      Serial.print(" ");
+    } else {
+      Serial.print(0);
+      Serial.print(" ");
     }
   }
-  if (analogRead(A2) > D ) {
-    Serial.print(analogRead(A2));
-    Serial.print(" ");
-  } else {
-    Serial.print(0);
-  }
-
-  if (Middle[69] = PixelArray[i] ) {
-    for (int M = 59; M < 69; M++ ) {
-      Middle[M] +  Middle[M] / 2;
-      Middle[M] = analogRead(A3);
+  
+  digitalWrite(CLK, HIGH);
+  digitalWrite(CLK, LOW);
+  //-----------------------------------------------------------------------------------
+  if (Middle[69] = analogRead(A0)) {
+    for (int M = 59; M < 69; M++) {
+      delayMicroseconds(sensorValue);
+      PixelArray[M] = analogRead(A3);
+      //digitalWrite(CLK, HIGH);
+      //digitalWrite(CLK, LOW);
+    }
+    if (analogRead(A3) > D ) {
+      Serial.print(analogRead(A3));
+      Serial.print(" ");
+    } else {
+      Serial.print(0);
+      Serial.print(" ");
     }
   }
-  if (analogRead(A3) > D ) {
-    Serial.print(analogRead(A3));
-    Serial.print(" ");
-  } else {
-    Serial.print(0);
-  }
-
-  if (Right[128] = PixelArray[i] ) {
-    for (int R = 69; R < 128; R++ ) {
-      Right[R] +  Right[R] / 2;
-      Right[R] = analogRead(A4);
+  digitalWrite(CLK, HIGH);
+  digitalWrite(CLK, LOW);
+  //-----------------------------------------------------------------------------------
+  if (Right[128] = analogRead(A0)) {
+    for (int R = 69; R < 128; R++) {
+      delayMicroseconds(sensorValue);
+      PixelArray[R] = analogRead(A4);
+      //digitalWrite(CLK, HIGH);
+      //digitalWrite(CLK, LOW);
+    }
+    if (analogRead(A4) > D ) {
+      Serial.print(analogRead(A4));
+      Serial.print(" ");
+    } else {
+      Serial.print(0);
+      Serial.print(" ");
     }
   }
-  if (analogRead(A4) > D ) {
-    Serial.print(analogRead(A4));
-    Serial.print(" ");
-  } else {
-    Serial.print(0);
-  }
+  digitalWrite(CLK, HIGH);
+  digitalWrite(CLK, LOW);
   Serial.println("  ");
 }
-//----------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
