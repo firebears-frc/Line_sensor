@@ -37,68 +37,26 @@ void loop() {
   digitalWrite(CLK, LOW);
 
   for (i = 0; i < 128; i ++) {
-    delayMicroseconds(sensorValue); PixelArray[i] = analogRead(A0); digitalWrite(CLK, HIGH); digitalWrite(CLK, LOW);
+    delayMicroseconds(sensorValue);
+    PixelArray[i] = analogRead(A0);
+    digitalWrite(CLK, HIGH);
+    digitalWrite(CLK, LOW);
   }
 
-  int Left[59] = {0, 59};
-  int Right[128] = {69, 128};
-  int Middle[69] = {59, 69};
-  float D = 100.6;
-  //-----------------------------------------------------------------------------------
-  if (Left[59] = analogRead(A0)) {
-    for (int L = 0; L < 59; L++) {
-      delayMicroseconds(sensorValue);
-      PixelArray[L] = analogRead(A2);
-      //digitalWrite(CLK, HIGH);
-      //digitalWrite(CLK, LOW);
-    }
-    if (analogRead(A2) > D ) {
-      Serial.print(analogRead(A2));
-      Serial.print(" ");
-    } else {
-      Serial.print(0);
-      Serial.print(" ");
-    }
+  for (int L = 0; L < 59; L++) {
+    Serial.print(PixelArray[L]);
+    Serial.print(" L ");
   }
-  
-  digitalWrite(CLK, HIGH);
-  digitalWrite(CLK, LOW);
-  //-----------------------------------------------------------------------------------
-  if (Middle[69] = analogRead(A0)) {
-    for (int M = 59; M < 69; M++) {
-      delayMicroseconds(sensorValue);
-      PixelArray[M] = analogRead(A3);
-      //digitalWrite(CLK, HIGH);
-      //digitalWrite(CLK, LOW);
-    }
-    if (analogRead(A3) > D ) {
-      Serial.print(analogRead(A3));
-      Serial.print(" ");
-    } else {
-      Serial.print(0);
-      Serial.print(" ");
-    }
+
+  for (int M = 59; M < 69; M++) {
+    Serial.print(PixelArray[M]);
+    Serial.print(" M ");
   }
-  digitalWrite(CLK, HIGH);
-  digitalWrite(CLK, LOW);
-  //-----------------------------------------------------------------------------------
-  if (Right[128] = analogRead(A0)) {
-    for (int R = 69; R < 128; R++) {
-      delayMicroseconds(sensorValue);
-      PixelArray[R] = analogRead(A4);
-      //digitalWrite(CLK, HIGH);
-      //digitalWrite(CLK, LOW);
-    }
-    if (analogRead(A4) > D ) {
-      Serial.print(analogRead(A4));
-      Serial.print(" ");
-    } else {
-      Serial.print(0);
-      Serial.print(" ");
-    }
+
+  for (int R = 69; R < 128; R++) {
+    Serial.print(PixelArray[R]);
+    Serial.print(" R ");
   }
-  digitalWrite(CLK, HIGH);
-  digitalWrite(CLK, LOW);
-  Serial.println("  ");
+  Serial.print('\n');
 }
 //-----------------------------------------------------------------------------------
